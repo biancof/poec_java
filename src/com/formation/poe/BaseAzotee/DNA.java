@@ -47,7 +47,7 @@ public class DNA {
     public String toString(){
         String res = "";
         for(Base b  : strand){
-            res = + b.getSymbol();
+            res = res + b.getSymbol();
         }
         return res;
     }
@@ -58,6 +58,7 @@ public class DNA {
         {
             comp.add(b.getMatch(false));
         }
+        return comp;
     }
 
 ////    private String setComplementary(brin){

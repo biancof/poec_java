@@ -16,10 +16,9 @@ public class Main {
 
         // Verification code for the class DNA
 
-        String code = "AAABBBCCCDDD";
+        String code = "AAAA";
         DNA pippo = new DNA(code);
-        System.out.println(pippo.transcription());
-        pippo.transcription().translateCodon("AAA");
+        System.out.println(pippo.toString());
 
 
 //        System.out.println("Pippo = " + pippo.getBrin().get(0)); // + "\nComplementary = " + complementary);

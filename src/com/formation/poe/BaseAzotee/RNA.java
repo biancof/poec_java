@@ -14,7 +14,7 @@ public class RNA {
     }
 
     public RNA(String code){
-        strand = setBrin(code);
+        strand = setStrand(code);
     }
 
     public String toString(){
@@ -22,6 +22,7 @@ public class RNA {
         for(Base b  : strand){
             res += b.getSymbol();
         }
+        return res;
     }
 
     public ArrayList<Base> setStrand(String code){
@@ -55,10 +56,10 @@ public class RNA {
         {
 //            String triple = "";
             for(int j = i ; j < i + 3 ; ++j)
-            if (!(j >= this.brin.size()))
+            if (!(j >= this.strand.size()))
             {
                 {
-                    triple = triple + this.brin.get(i).getSymbol();
+                    triple = triple + this.strand.get(i).getSymbol();
                 }
                 if (codon.equals(triple)){
                     res = true;

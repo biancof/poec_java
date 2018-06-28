@@ -41,32 +41,35 @@ public class Base {
     }
 
     public Base getMatch(boolean isRNA){
-        switch(symbol)
+        String symbol = "";
+        switch(this.symbol)
         {
             case "A":
-                if (isRNA) {
-                    return new Base("U");
-                    break;
-                }
-                else
-                {
-                    return new Base("T");
-                    break;
-                }
+                symbol = "T";
+//                if (isRNA) {
+//                    return new Base("U");
+//                    break;
+//                }
+//                else
+//                {
+//                    return new Base("T");
+//                    break;
+//                }
                 break;
             case "T":
-                return new Base("A");
+                symbol = "A";
                 break;
             case "C":
-                return new Base("G");
+                symbol = "G";
                 break;
             case "G":
-                return new Base("C");
+                symbol = "C";
             case "U":
-                return new Base("A");
+                symbol = "A";
             default:
                 System.out.print("Error: Base " + symbol + " doesn't match with any base");
         }
+        return new Base(symbol);
     }
 
     // getters

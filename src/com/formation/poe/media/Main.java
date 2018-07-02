@@ -6,49 +6,62 @@ public class Main {
     public static void main(String[] args){
 
         // Verification code
-
+    	
+    	// Set objects: medias, authors and publishers
 
         Author a1 = new Author("Francesco", "Bianco");
-        ArrayList<Author> authors1 = new ArrayList<>();
-        authors1.add(a1);
+        ArrayList<Author> listAuthor1 = new ArrayList<>();
+        listAuthor1.add(a1);
 
         Author a2 = new Author("Jiri", "Spicka");
-        ArrayList<Author> authors2 = new ArrayList<>();
-        authors2.add(a1);
-        authors2.add(a2);
+        ArrayList<Author> listAuthor2 = new ArrayList<>();
+        listAuthor2.add(a1);
+        listAuthor2.add(a2);
 
         Author a3 = new Author("Vinicio", "Capossela");
-        ArrayList<Author> authors3 = new ArrayList<>();
-        authors3.add(a3);
+        ArrayList<Author> listAuthor3 = new ArrayList<>();
+        listAuthor3.add(a3);
 
-        Author a4 = new Author("Jacopo", "Spila");
-        ArrayList<Author> authors4 = new ArrayList<>();
-        authors4.add(a4);
+        Author a4 = new Author("Terry", "Jones");
+        ArrayList<Author> listAuthor4 = new ArrayList<>();
+        listAuthor4.add(a4);
 
         Publisher p1 = new Publisher("Cesati");
-
-        Media m1 = new Media(authors1, "Breve guida alla sintassi italiana", 12);
-        m1.setPublisher(p1);
-        System.out.println(m1);
-        System.out.println("Net price = " + m1.getNetPrice() + " Euro (TVA excl.)");
-
-        Book b1 = new Book(authors1, "Breve guida alla sintassi italiana", 12);
-        b1.setNPages(120);
-        System.out.println(b1);
-        System.out.println("Net price = " + b1.getNetPrice() + " Euro (TVA excl.)");
-
-        CD c1 = new CD(authors3, "Ovunque proteggi", 20);
-        System.out.println(c1);
-        System.out.println("Net price = " + c1.getNetPrice() + " Euro (TVA excl.)");
-
-        DVD d1 = new DVD(authors4, "Assassinio al Frustone", 27);
-        System.out.println(d1);
-        System.out.println("Net price = " + d1.getNetPrice() + " Euro (TVA excl.)");
-
-        Media m2 = new Book(authors2, "Perche scrivere", 50);
-        ((Book)m2).setNPages(120);
-        System.out.println(m2);
-        System.out.println("Net price = " + m2.getNetPrice() + " Euro (TVA excl.)");
-
+        Publisher p2 = new Publisher("Python (Monty) Pictures Ltd");
+        Publisher p3 = new Publisher("Atlantic Records");
+        
+        // Appearance of medias
+        
+        // Book as general Media
+        
+        Media m1 = new Media(listAuthor1, "Breve guida alla sintassi italiana", 10);
+        m1.setPublisher(p1);	// set the publisher, which is not an argument
+        System.out.println("Item # " + m1.getId() + " (Book as general Media): " + m1);
+        System.out.println("Brut price = " + m1.getPrice() + " Euro (TVA excl.)\n");
+        
+        // Book as Book
+        
+        Book b1 = new Book(listAuthor2, "Perche' scrivere?", 48);
+        b1.setNPages(120);	// set the number of pages, which is not an argument
+        b1.setPublisher(p1); // set the publisher, which is not an argument
+        System.out.println("Item # " + b1.getId() + " (Book): " + b1);
+        System.out.println("Brut price = " + b1.getPrice() + " Euro (TVA excl.)\n");
+        
+        // CD as CD
+        
+        CD c1 = new CD(listAuthor3, "Ovunque proteggi", 20);
+        c1.setnTracks(13);	// set the number of tracks, which is not an argument
+        c1.setPublisher(p3);
+        System.out.println("Item # " + c1.getId() + " (CD): " + c1);
+        System.out.println("Net price = " + c1.getPrice() + " Euro (TVA excl.)\n");
+        
+        // DVD as DVD
+        
+        DVD d1 = new DVD(listAuthor4, "Life of Brian", 27);
+        d1.setPublisher(p2);	// set the publisher, which is not an argument
+        d1.setZone(2);	// set the DVD zone (0-8), which is not an argument
+        System.out.println("Item # " + d1.getId() + " (DVD): " + d1);
+        System.out.println("Net price = " + d1.getPrice() + " Euro (TVA excl.)\n");
+        
     }
 }

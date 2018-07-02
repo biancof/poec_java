@@ -2,23 +2,31 @@ package com.formation.poe.media;
 
 public class Publisher {
 
+    // attributes
+    
     private static int id;
     private String name;
-
+    
+    // constructors
+    
     public Publisher(){
 
     }
-
+    
     public Publisher(String name){
         this.name = name;
     }
-
+    
+    // toString();
+    
+    public String toString(){
+        return this.name;
+    }
+    
+    // getters & setters
+    
     public static int getId() {
         return id;
-    }
-
-    public static void setId(int id) {
-        Publisher.id = id;
     }
 
     public String getName() {
@@ -27,9 +35,5 @@ public class Publisher {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String toString(){
-        return this.name;
     }
 }

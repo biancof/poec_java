@@ -8,7 +8,9 @@ public class Media {
 
     private static int id;
     private String title;
-    private double price; // brut price
+    private double price; // price without VAT
+    private double vatRate = 20; // standard VAT rate (20 %)
+    private double discount = 0;	// percentage of discout on net (VAT incl.) price
     private ArrayList<Author> authors = new ArrayList<>();
     private Publisher publisher;
 
@@ -21,14 +23,20 @@ public class Media {
     public Media(ArrayList<Author> authors, String title, double price){
         this.authors = authors;
         this.title = title;
-        this.price = price;
+        this.price = price;		
         ++id;
     }
 
     // methods
-
-    public double getNetPrice(){
-        return Math.round(this.price / 1.2);
+    
+    // Calculates the net price of the item.
+    // Net price is intended as final price (+VAT - discount)
+    
+    public double getNetPrice()
+    {	
+    	double netPrice = price * (vatRate + 100) / 100;	// price with VAT 
+    	netPrice *= (100 - discount) / 100;	// price with VAT and discount
+        return Math.round(netPrice);	// rounded net price
     }
 
     // getters & setters
@@ -56,17 +64,23 @@ public class Media {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    // toString()
-
-    public String toString(){
-        String authors = "";
-        for (int i = 0 ; i < this.authors.size() ; ++i) {
-            authors = authors + this.authors.get(i) + ", ";
-        }
-        return authors + "\"" + title + "\", " + publisher + ", " + price + " Euro (TVA incl.)";
+    
+    public double getVatRate() {
+        return vatRate;
     }
 
+    public void setVatRate(double vatRate) {
+        this.vatRate = vatRate;
+    }
+    
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+    
     public ArrayList<Author> getAuthors() {
         return authors;
     }
@@ -81,5 +95,15 @@ public class Media {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    // toString()
+
+    public String toString(){
+        String authors = "";
+        for (int i = 0 ; i < this.authors.size() ; ++i) {
+            authors = authors + this.authors.get(i) + ", ";
+        }
+        return authors + "\"" + title + "\", " + publisher + ", " + this.getNetPrice() + " Euro (TVA incl.)";
     }
 }

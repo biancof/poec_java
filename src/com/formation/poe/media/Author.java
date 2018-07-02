@@ -1,5 +1,7 @@
 package com.formation.poe.media;
 
+import java.util.ArrayList;
+
 public class Author {
 
     // attributes

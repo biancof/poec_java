@@ -22,7 +22,8 @@ public class Book extends Media {
 
     @Override
     public double getNetPrice() {
-        return Math.round(super.getPrice() / 1.05);
+    	super.setVatRate(5);
+        return super.getNetPrice(); // price with VAT
     }
 
     // toString()

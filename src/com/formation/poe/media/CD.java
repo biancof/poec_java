@@ -21,8 +21,8 @@ public class CD extends Media {
     // methods
 
     @Override
-    public double getNetPrice(){
-        return super.getNetPrice();
+    public double getNetPrice(){	// price with VAT
+    	return super.getNetPrice();
     }
 
     // getters & setters

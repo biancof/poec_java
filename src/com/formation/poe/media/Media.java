@@ -2,7 +2,7 @@ package com.formation.poe.media;
 
 import java.util.ArrayList;
 
-public class Media {
+public abstract class Media {
 
     // attributes
 
@@ -32,12 +32,7 @@ public class Media {
     // Calculates the net price of the item.
     // Net price is intended as final price (+VAT - discount)
     
-    public double getNetPrice()
-    {	
-    	double netPrice = price * (vatRate + 100) / 100;	// price with VAT 
-    	netPrice *= (100 - discount) / 100;	// price with VAT and discount
-        return Math.round(netPrice);	// rounded net price
-    }
+    public abstract double getNetPrice();
 
     // getters & setters
 

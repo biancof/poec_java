@@ -34,10 +34,10 @@ public class Main {
         
         // Book as general Media
         
-        Media m1 = new Media(listAuthor1, "Breve guida alla sintassi italiana", 10);
+        /*Media m1 = new Media(listAuthor1, "Breve guida alla sintassi italiana", 10);
         m1.setPublisher(p1);	// set the publisher, which is not an argument
         System.out.println("Item # " + m1.getId() + " (Book as general Media): " + m1);
-        System.out.println("Brut price = " + m1.getPrice() + " Euro (TVA excl.)\n");
+        System.out.println("Brut price = " + m1.getPrice() + " Euro (TVA excl.)\n");*/
         
         // Book as Book
         
@@ -62,6 +62,20 @@ public class Main {
         d1.setZone(2);	// set the DVD zone (0-8), which is not an argument
         System.out.println("Item # " + d1.getId() + " (DVD): " + d1);
         System.out.println("Net price = " + d1.getPrice() + " Euro (TVA excl.)\n");
-        
+
+        // Cart
+
+        Cart cart1 = new Cart();
+        System.out.println("[Test # 1: creation of an empty cart] " + cart1);
+
+        cart1.add(b1);
+        cart1.add(c1);
+        cart1.add(d1);
+
+        System.out.println("[Test # 2: add a book, a cd, and a dvd] " + cart1);
+        cart1.remove(d1);
+        System.out.println("[Test # 3: remove the dvd] " + cart1);
+        cart1.add(b1);
+        System.out.println("[Test # 4: add another copy of the book] " + cart1);
     }
 }

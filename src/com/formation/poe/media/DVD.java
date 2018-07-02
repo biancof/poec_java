@@ -20,9 +20,12 @@ public class DVD extends Media {
     // methods
     
     @Override
-    public double getNetPrice(){	// price with VAT
-    	super.setDiscount(20);
-    	return super.getNetPrice();
+    public double getNetPrice() {
+        super.setVatRate(20);
+        super.setDiscount(20);
+        double netPrice = super.getPrice() * (super.getVatRate() + 100) / 100;	// price with VAT
+        netPrice *= (100 - super.getDiscount()) / 100;	// price with VAT and discount
+        return Math.round(netPrice);	// rounded net price
     }
     
     // getters & setters

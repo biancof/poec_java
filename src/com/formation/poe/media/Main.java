@@ -68,14 +68,18 @@ public class Main {
         Cart cart1 = new Cart();
         System.out.println("[Test # 1: creation of an empty cart] " + cart1);
 
-        cart1.add(b1);
-        cart1.add(c1);
-        cart1.add(d1);
+        cart1.addMedia(b1);
+        cart1.addMedia(c1);
+        cart1.addMedia(d1);
 
         System.out.println("[Test # 2: add a book, a cd, and a dvd] " + cart1);
-        cart1.remove(d1);
+        cart1.removeMedia(d1);
         System.out.println("[Test # 3: remove the dvd] " + cart1);
-        cart1.add(b1);
+        cart1.addMedia(b1);
         System.out.println("[Test # 4: add another copy of the book] " + cart1);
+
+        System.out.println();
+
+        cart1.display();
     }
 }

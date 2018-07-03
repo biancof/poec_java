@@ -67,6 +67,16 @@ public class Main {
 
         Cart cart1 = new Cart();
         System.out.println("[Test # 1: creation of an empty cart] " + cart1);
+        System.out.print("[Test # 1: creation of an empty cart] " + cart1);
+
+        try
+        {
+            cart1.validate();
+        }
+        catch (MediaException e)
+        {
+            System.out.println("\n" + e + "\n");
+        }
 
         cart1.addMedia(b1);
         cart1.addMedia(c1);
@@ -81,5 +91,16 @@ public class Main {
         System.out.println();
 
         cart1.display();
+
+        System.out.println();
+
+        try
+        {
+            cart1.validate();
+        }
+        catch (MediaException e)
+        {
+            System.out.println("\n" + e + "\n");
+        }
     }
 }

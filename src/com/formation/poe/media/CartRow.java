@@ -8,7 +8,7 @@ public class CartRow {
     public CartRow(){
     }
 
-    public CartRow(IMedia m){
+    public CartRow(IMedia m) {
         this.m = m;
     }
 
@@ -16,14 +16,14 @@ public class CartRow {
         ++this.n;
     }
 
-    public void decrement(){
-        if (n >= 1)
+    public void decrement() {
+        if (this.n < 1)
         {
-            --this.n;
+            System.out.println("CartRow error: the quantity of a row can't be less than 1");
         }
         else
         {
-            System.out.println("Quantity error");
+            --this.n;
         }
 
     }

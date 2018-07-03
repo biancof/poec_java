@@ -13,17 +13,7 @@ public class Cart {
 
     // methods
 
-    public void add(CartRow c)
-    {
-        this.cartRowList.add(c);
-    }
-
-    public void remove(CartRow c)
-    {
-        this.cartRowList.remove(c);
-    }
-
-    public void addMedia(IMedia m){
+    public void addMedia(IMedia m) {
         boolean isIncart = false;
         for (CartRow r : this.cartRowList)
         {
@@ -58,6 +48,17 @@ public class Cart {
         }
     }
 
+    public void validate() throws MediaException {
+        if (getTotalNetPrice() <= 0){
+            throw new MediaException("Cart error: cart can't be validated " +
+                    "until the total price is not positive");
+        }
+        else
+        {
+            System.out.println("The cart is validated. Now you have to pay, dude!");
+        }
+    }
+
     public void display(){
         System.out.println("Content of the cart:\n");
         for(CartRow r : this.cartRowList)
@@ -68,12 +69,18 @@ public class Cart {
 
     public double getTotalNetPrice()
     {
-        double totalNetPrice = 0;
+        // "old-style" algorithm
+
+        /*double totalNetPrice = 0;
         for (CartRow c : this.cartRowList)
         {
             totalNetPrice += c.getNetPrice();
         }
-        return totalNetPrice;
+        return totalNetPrice;*/
+
+        // "trendy" solution (functional programming)
+
+        return this.cartRowList.stream().mapToDouble(row -> row.getM().getNetPrice()).sum();
     }
 
     // getter

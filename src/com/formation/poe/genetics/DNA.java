@@ -41,7 +41,7 @@ public class DNA extends NucleicAcid {
     // toString()
 
     public String toString(){
-        return "\nDNA: " + super.toString();
+        return "DNA: " + super.toString();
     }
 }
 

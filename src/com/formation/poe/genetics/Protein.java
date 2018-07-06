@@ -24,6 +24,10 @@ public class Protein {
 
     @Override
     public String toString(){
-        return "Protein: " + aminoAcidList;
+        String aminoAcids = "";
+        for (AminoAcid a : this.aminoAcidList){
+            aminoAcids += a.getSymbol();
+        }
+        return aminoAcids;
     }
 }

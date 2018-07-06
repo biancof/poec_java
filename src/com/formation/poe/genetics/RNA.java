@@ -14,6 +14,6 @@ public class RNA extends NucleicAcid {
     }
 
     public String toString(){
-        return "\nRNA: " + super.toString();
+        return "RNA: " + super.toString();
     }
 }

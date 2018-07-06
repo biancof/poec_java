@@ -113,6 +113,6 @@ public abstract class Media implements IMedia {
         for (int i = 0 ; i < this.authors.size() ; ++i) {
             authors = authors + this.authors.get(i) + ", ";
         }
-        return authors + "\"" + title + "\", " + publisher + ", " + this.getNetPrice() + " Euro (TVA incl.)";
+        return authors + "\"" + title + "\", " + publisher + ", " + this.getNetPrice() + " Euro (VAT incl.)";
     }
 }

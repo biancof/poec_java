@@ -91,19 +91,19 @@ public class Ribosome {
         return aminoAcidCode;
     }
 
-    public String strandToString(RNA rna)
+    public String strandToString()
     {
         String str = "";
-        for (Base b : rna.getStrand())
+        for (Base b : this.rna.getStrand())
         {
             str += b.getSymbol();
         }
         return str;
     }
 
-    public List<Protein> translate(RNA rna) {
+    public List<Protein> translate() {
         List<Protein> proteinList = new ArrayList<>();
-        String strandToString = this.strandToString(rna);
+        String strandToString = this.strandToString();
         String aminoAcidList = "";
         for (int i = 0 ; i < strandToString.length() ; i += 3) {
             if (i < strandToString.length() - 2) {
@@ -124,66 +124,4 @@ public class Ribosome {
         }
         return p;
     }
-
-//    public List<Protein> translate(RNA rna){
-//        List<Protein> proteinList = new ArrayList<>();
-//        int size = rna.getStrand().size();
-//        int iterations = size / 3;
-//        Protein protein = new Protein();
-//        AminoAcid aminoAcid = null;
-//        for (int i = 0 ; i < size ; i += 3){
-//            if (i * 3 >= iterations)
-//            {
-//                break;
-//            }
-//                List<Base> codon = new ArrayList<>();
-//                for (int j = i ; j < 3 ; ++j){
-//                    codon.add(rna.getStrand().get(j));
-//                }
-//                aminoAcid = this.translateCodon(codon);
-//                if (aminoAcid != null){
-//                    protein.getAminoAcidList().add(aminoAcid);
-//                    aminoAcid = null;
-//                }
-//                else
-//                {
-//                    proteinList.add(protein);
-//                    protein.setAminoAcidList(null);
-//                    aminoAcid = null;
-//                }
-//        }
-//        if (aminoAcid != null){                 // this part of code avoids that
-//            proteinList.add(protein);   // an empty protein is put at the
-//        }                                       // end of the chain
-//        return proteinList;
-//    }
-
-//    public void translateCodon(String codon)
-//    {
-//        String triple = "";
-//        boolean res = false;
-//        for(int i = 0 ; i < this.rna.getStrand().size() ; i += 3)
-//        {
-////            String triple = "";
-//            for(int j = i ; j < i + 3 ; ++j)
-//                if (!(j >= this.strand.size()))
-//                {
-//                    {
-//                        triple = triple + this.strand.get(i).getSymbol();
-//                    }
-//                    if (codon.equals(triple)){
-//                        res = true;
-//                    }
-//                }
-//            System.out.println("Triple = " + triple);
-//            triple = "";
-//        }
-////        return res;
-//        System.out.println("Triple = fanculo");
-//    }
-
-//    public List<Protein> translate(RNA rna){
-//        List<Protein> proteinList = new ArrayList<Protein>();
-//        return proteinList;
-//    }
 }

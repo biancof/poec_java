@@ -1,0 +1,431 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.4
+-- Dumped by pg_dump version 10.4
+
+-- Started on 2018-07-09 13:29:18
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2837 (class 1262 OID 12938)
+-- Name: postgres; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'French_France.1252' LC_CTYPE = 'French_France.1252';
+
+
+ALTER DATABASE postgres OWNER TO postgres;
+
+\connect postgres
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2838 (class 0 OID 0)
+-- Dependencies: 2837
+-- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE postgres IS 'default administrative connection database';
+
+
+--
+-- TOC entry 2 (class 3079 OID 12924)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2840 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 1 (class 3079 OID 16384)
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2841 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 202 (class 1259 OID 16457)
+-- Name: author; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.author (
+    id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    surname character varying(30) NOT NULL
+);
+
+
+ALTER TABLE public.author OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 16455)
+-- Name: author_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.author_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.author_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2842 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: author_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.author_id_seq OWNED BY public.author.id;
+
+
+--
+-- TOC entry 197 (class 1259 OID 16393)
+-- Name: book; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.book (
+    id integer NOT NULL,
+    title character varying(50) NOT NULL,
+    price integer,
+    publisher_id integer
+);
+
+
+ALTER TABLE public.book OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 16482)
+-- Name: book_author; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.book_author (
+    book_id integer NOT NULL,
+    author_id integer NOT NULL
+);
+
+
+ALTER TABLE public.book_author OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 16396)
+-- Name: book_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.book_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.book_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2843 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: book_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.book_id_seq OWNED BY public.book.id;
+
+
+--
+-- TOC entry 200 (class 1259 OID 16409)
+-- Name: publisher; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.publisher (
+    id integer NOT NULL,
+    name character varying(30) NOT NULL
+);
+
+
+ALTER TABLE public.publisher OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 16407)
+-- Name: publisher_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.publisher_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.publisher_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2844 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: publisher_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.publisher_id_seq OWNED BY public.publisher.id;
+
+
+--
+-- TOC entry 2689 (class 2604 OID 16460)
+-- Name: author id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.author ALTER COLUMN id SET DEFAULT nextval('public.author_id_seq'::regclass);
+
+
+--
+-- TOC entry 2687 (class 2604 OID 16398)
+-- Name: book id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book ALTER COLUMN id SET DEFAULT nextval('public.book_id_seq'::regclass);
+
+
+--
+-- TOC entry 2688 (class 2604 OID 16412)
+-- Name: publisher id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.publisher ALTER COLUMN id SET DEFAULT nextval('public.publisher_id_seq'::regclass);
+
+
+--
+-- TOC entry 2830 (class 0 OID 16457)
+-- Dependencies: 202
+-- Data for Name: author; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.author VALUES (1, 'Francesco', 'Bianco');
+INSERT INTO public.author VALUES (2, 'Jiri', 'Spicka');
+INSERT INTO public.author VALUES (3, 'Umberto', 'Eco');
+INSERT INTO public.author VALUES (4, 'Primo', 'Levi');
+INSERT INTO public.author VALUES (6, 'Maurizio', 'Dardano');
+INSERT INTO public.author VALUES (5, 'Marcello', 'Bolpagni');
+INSERT INTO public.author VALUES (7, 'Pietro', 'Trifone');
+INSERT INTO public.author VALUES (8, 'Luca', 'Serianni');
+
+
+--
+-- TOC entry 2825 (class 0 OID 16393)
+-- Dependencies: 197
+-- Data for Name: book; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.book VALUES (4, 'Apocalittici e integrati', 20, 2);
+INSERT INTO public.book VALUES (3, 'Il nome della rosa', 15, 2);
+INSERT INTO public.book VALUES (6, 'La tregua', 13, 4);
+INSERT INTO public.book VALUES (5, 'Se questo è un uomo', 18, 4);
+INSERT INTO public.book VALUES (8, 'Nuovo manualetto di linguistica italiana', 23, 3);
+INSERT INTO public.book VALUES (9, 'La nuova grammatica della lingua italiana', 37, 3);
+INSERT INTO public.book VALUES (10, 'Grammatica italiana', 23, 6);
+INSERT INTO public.book VALUES (7, 'La geografia del Decameron', 9, 5);
+INSERT INTO public.book VALUES (2, 'Perché scrivere?', 48, 1);
+INSERT INTO public.book VALUES (1, 'Breve guida alla sintassi italiana', 12, 1);
+
+
+--
+-- TOC entry 2831 (class 0 OID 16482)
+-- Dependencies: 203
+-- Data for Name: book_author; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.book_author VALUES (1, 1);
+INSERT INTO public.book_author VALUES (2, 1);
+INSERT INTO public.book_author VALUES (2, 2);
+INSERT INTO public.book_author VALUES (3, 3);
+INSERT INTO public.book_author VALUES (4, 3);
+INSERT INTO public.book_author VALUES (5, 4);
+INSERT INTO public.book_author VALUES (6, 4);
+INSERT INTO public.book_author VALUES (7, 5);
+INSERT INTO public.book_author VALUES (8, 6);
+INSERT INTO public.book_author VALUES (9, 6);
+INSERT INTO public.book_author VALUES (9, 7);
+INSERT INTO public.book_author VALUES (10, 8);
+
+
+--
+-- TOC entry 2828 (class 0 OID 16409)
+-- Dependencies: 200
+-- Data for Name: publisher; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.publisher VALUES (1, 'Cesati');
+INSERT INTO public.publisher VALUES (2, 'Bompiani');
+INSERT INTO public.publisher VALUES (3, 'Zanichelli');
+INSERT INTO public.publisher VALUES (4, 'Einaudi');
+INSERT INTO public.publisher VALUES (5, 'Prospero');
+INSERT INTO public.publisher VALUES (6, 'Utet');
+INSERT INTO public.publisher VALUES (9, 'Morano');
+
+
+--
+-- TOC entry 2845 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.author_id_seq', 8, true);
+
+
+--
+-- TOC entry 2846 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: book_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.book_id_seq', 13, true);
+
+
+--
+-- TOC entry 2847 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: publisher_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.publisher_id_seq', 9, true);
+
+
+--
+-- TOC entry 2696 (class 2606 OID 16462)
+-- Name: author author_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.author
+    ADD CONSTRAINT author_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2698 (class 2606 OID 16486)
+-- Name: book_author book_author_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book_author
+    ADD CONSTRAINT book_author_pkey PRIMARY KEY (book_id, author_id);
+
+
+--
+-- TOC entry 2691 (class 2606 OID 16403)
+-- Name: book book_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book
+    ADD CONSTRAINT book_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2694 (class 2606 OID 16414)
+-- Name: publisher publisher_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.publisher
+    ADD CONSTRAINT publisher_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2699 (class 1259 OID 16504)
+-- Name: fki_fk_author; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_fk_author ON public.book_author USING btree (author_id);
+
+
+--
+-- TOC entry 2700 (class 1259 OID 16493)
+-- Name: fki_fk_book; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_fk_book ON public.book_author USING btree (book_id);
+
+
+--
+-- TOC entry 2692 (class 1259 OID 16435)
+-- Name: fki_fk_publisher_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_fk_publisher_id ON public.book USING btree (publisher_id);
+
+
+--
+-- TOC entry 2703 (class 2606 OID 16499)
+-- Name: book_author fk_author; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book_author
+    ADD CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES public.author(id);
+
+
+--
+-- TOC entry 2702 (class 2606 OID 16488)
+-- Name: book_author fk_book; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book_author
+    ADD CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES public.book(id);
+
+
+--
+-- TOC entry 2701 (class 2606 OID 16430)
+-- Name: book fk_publisher_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book
+    ADD CONSTRAINT fk_publisher_id FOREIGN KEY (publisher_id) REFERENCES public.publisher(id);
+
+
+-- Completed on 2018-07-09 13:29:18
+
+--
+-- PostgreSQL database dump complete
+--
+

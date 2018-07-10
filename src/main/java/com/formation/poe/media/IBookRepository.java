@@ -8,14 +8,14 @@ public interface IBookRepository {
 
     void load(String uri) throws IOException, ClassNotFoundException, SQLException;
 
-    List<Book> getAll() throws IOException, ClassNotFoundException, SQLException;
-    Book getById(int id);
-    List<Book> getByTitle(String title);
-    List<Book> getByPrice(double price);
-    List<Book> getByPublisher(String publisherName); // Bonus
+    List<Book> getAll() throws SQLException;
+    Book getById(int id) throws SQLException;
+    List<Book> getByTitle(String title) throws SQLException;
+    List<Book> getByPrice(double price) throws SQLException;
+    List<Book> getByPublisher(String publisherName) throws SQLException; // Bonus
     // Bonus
-    void add(Book b) throws IOException ;
-    void remove(Book b) throws IOException ;
-    void update(Book b) throws IOException ;
+    void add(Book b) throws SQLException ;
+    void remove(Book b) throws SQLException ;
+    void update(Book b) throws SQLException ;
 
 }

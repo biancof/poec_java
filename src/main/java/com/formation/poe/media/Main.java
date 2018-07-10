@@ -1,9 +1,6 @@
 package com.formation.poe.media;
 
-import java.io.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -179,17 +176,37 @@ public class Main {
 
         // Postgre database
 
+
         SqlBookRepository sbr1 = new SqlBookRepository();
         try{
+            System.out.println("All books of the repository (getAll):");
+            sbr1.load("jdbc:postgresql://localhost:5432/postgres");
             sbr1.getAll();
-        }
-        catch(SQLException e){
-             e.printStackTrace();
+            for (Book b : sbr1.getAll()){
+                System.out.println(b);
+            };
+
+            System.out.println();
+            System.out.println("Book with id = 1:");
+            System.out.println(sbr1.getById(1));
+
+            System.out.println();
+            System.out.println("Books with \"italiana\" in the title (not case sensitive):");
+            for (Book b : sbr1.getByTitle("Italiana")){
+                System.out.println(b);
+            };
+
+            System.out.println();
+            System.out.println("Books whose (net) price is < or = 20 Eur:");
+            for (Book b : sbr1.getByPrice(20)){
+                System.out.println(b);
+            };
+
         }
         catch(ClassNotFoundException e){
             e.printStackTrace();
         }
-        catch(IOException e){
+        catch(SQLException e){
             e.printStackTrace();
         }
 

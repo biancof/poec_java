@@ -1,7 +1,6 @@
 package com.formation.poe.media;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Book extends Media {
 
